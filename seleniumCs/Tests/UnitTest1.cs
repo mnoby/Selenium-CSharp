@@ -3,95 +3,116 @@ using OpenQA.Selenium.Support.UI;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 using OpenQA.Selenium.Interactions;
 using Cookie = OpenQA.Selenium.Cookie;
-using seleniumCs.Resources;
-//using seleniumCs.Utils;
 using AventStack.ExtentReports;
 using seleniumCs.Pages;
 using System.Text.Json.Serialization;
 using static System.Net.WebRequestMethods;
 using seleniumCs.Pages2;
+using seleniumCs.Utils;
+using System;
 
 namespace seleniumCs
 {
     [TestFixture]
-    public class UnitTest
+    public class UnitTest : Inits
     {
-        //private ChromeDriver driver;
-        //private WebDriverWait wait;
-        IWebDriver _driver;
-        WebDriverWait _wait;
-        Actions _actions;
-        HomePage homePage;
-        PracticePage practicePage;
-        TestLoginPage testLoginPage;
-        HomePage2 homePage2;
-        DropdownPage dropdownPage;
-        CheckboxAction checkboxAction;
+        //IWebDriver driver;
+        //WebDriverWait wait;
+        //Actions actions;
+        //Inits inits;
+        //ExtentReports _extent;
+        //ExtentTest _test;
+        //Guid _uuid;
 
-        private int _index;
-        private int res;
+        //HomePage homePage;
+        //PracticePage practicePage;
+        //TestLoginPage testLoginPage;
+        //HomePage2 homePage2;
+        //DropdownPage dropdownPage;
+        //CheckboxAction checkboxAction;
+        //HomePage homePage = new(driver, wait, actions);
+        //homePage2 = new HomePage2(driver, wait);
+        //PracticePage practicePage = new PracticePage(driver, wait);
+        //TestLoginPage testLoginPage = new TestLoginPage(driver, wait);
+        //DropdownPage dropdownPage = new DropdownPage(driver, wait);
+        //CheckboxAction checkboxAction = new CheckboxAction(driver, wait);
+        //Reporter reporter;
+        //Reporter1 reporter1;
+
+        //private static int GetPixelsToMove(IWebElement Slider, decimal Amount, decimal SliderMax, decimal SliderMin)
+        //{
+        //    int pixels;
+        //    decimal tempPixels = Slider.Size.Width;
+        //    tempPixels /= (SliderMax - SliderMin);
+        //    tempPixels *= (Amount - SliderMin);
+        //    pixels = (int)tempPixels;
+        //    return pixels;
+        //}
+
+        //[SetUp]
+        //public void Setup()
+        //{
+
+        //    //Below code is to get the drivers folder path dynamically.
+
+        //    //You can also specify chromedriver.exe path dircly ex: C:/MyProject/Project/drivers
+
+        //    // string path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+
+        //    //Creates the ChomeDriver object, Executes tests on Google Chrome
+        //    //driver = new WebDriverFactory().Create(BrowserType.Chrome);
+        //    //driver.Manage().Window.Maximize();
+        //    //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
+        //    //driver = new Reporter1().GetDriver();
+        //    ////driver = new ChromeDriver();
+        //    //wait = new(driver, TimeSpan.FromSeconds(10));
+        //    //actions = new(driver);
+        //    //_uuid = Guid.NewGuid();
+
+        //homePage = new HomePage(driver, wait, actions);
+        //    //homePage2 = new HomePage2(driver, wait);
+        //    //practicePage = new PracticePage(driver, wait);
+        //    //testLoginPage = new TestLoginPage(driver, wait);
+        //    //dropdownPage = new DropdownPage(driver, wait);
+        //    //checkboxAction = new CheckboxAction(driver, wait);
+        //    //reporter = new Reporter(_extent, _test);
+        //    //reporter1 = new Reporter1(GetDriver());
+
+        //    //_test = _extent.CreateTest(TestContext.CurrentContext.Test.Name);
+        //    //reporter.StartReporter(_uuid.ToString()[..4]);
+        //    //url = new URL(); 
+        //    // rivate IWebElement practiceBtn => driver.FindElement(By.XPath("//a[contains(text(),'Practice')]"));
 
 
-        private static int GetPixelsToMove(IWebElement Slider, decimal Amount, decimal SliderMax, decimal SliderMin)
-        {
-            int pixels;
-            decimal tempPixels = Slider.Size.Width;
-            tempPixels /= (SliderMax - SliderMin);
-            tempPixels *= (Amount - SliderMin);
-            pixels = (int)tempPixels;
-            return pixels;
-        }
+        //    //If you want to Execute Tests on Firefox uncomment the below code
 
-        [SetUp]
-        public void Setup()
-        {
+        //    // Specify Correct location of geckodriver.exe folder path. Ex: C:/Project/drivers
 
-            //Below code is to get the drivers folder path dynamically.
+        //    //driver= new FirefoxDriver(path + @"\drivers\");
 
-            //You can also specify chromedriver.exe path dircly ex: C:/MyProject/Project/drivers
+        //}
 
-            // string path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-
-            //Creates the ChomeDriver object, Executes tests on Google Chrome
-            _driver = new WebDriverFactory().Create(BrowserType.Chrome);
-            _driver.Manage().Window.Maximize();
-            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-
-            //test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
-            //driver = new ChromeDriver();
-            _wait = new(_driver, TimeSpan.FromSeconds(10));
-            _actions = new(_driver);
-            homePage = new HomePage(_driver, _wait, _actions);
-            homePage2 = new HomePage2(_driver, _wait);
-            practicePage = new PracticePage(_driver, _wait);
-            testLoginPage = new TestLoginPage(_driver, _wait);
-            dropdownPage = new DropdownPage(_driver, _wait);
-            checkboxAction = new CheckboxAction(_driver, _wait);
-
-            //url = new URL(); 
-            // rivate IWebElement practiceBtn => driver.FindElement(By.XPath("//a[contains(text(),'Practice')]"));
-
-
-            //If you want to Execute Tests on Firefox uncomment the below code
-
-            // Specify Correct location of geckodriver.exe folder path. Ex: C:/Project/drivers
-
-            //driver= new FirefoxDriver(path + @"\drivers\");
-
-        }
-
+        //[TearDown]
+        ////[Description("Generate Report")]
+        //public void AfterTest()
+        //{
+        //    //reporter.GenerateReport();
+        //    driver.Quit();
+        //}
 
         //[OneTimeTearDown]
-        [TearDown]
-        public void Close()
-        {
-            _driver.Quit();
-        }
+        ////[TearDown]
+        //public void Flush()
+        //{
+        //    _extent.Flush();
+        //}
 
         [Test]
         public void AccessHomePage()
         {
-            _driver.Navigate().GoToUrl(URL.practiceAutomation);
+            
+            driver.Navigate().GoToUrl(URL.practiceAutomation);
             homePage.VerifyHomePage("Hello");
         }
 
@@ -115,9 +136,9 @@ namespace seleniumCs
             AccessHomePage();
             homePage.CLickPracticeMenu();
             practicePage.clickTestLogin();
-            _wait.Until(ExpectedConditions.ElementIsVisible(testLoginPage.pageTitle));
+            wait.Until(ExpectedConditions.ElementIsVisible(testLoginPage.pageTitle));
             testLoginPage.Login(creds.username, creds.password);
-            testLoginPage.verifyLoginSucess(asserts.expectedUrl, _driver.Url, asserts.text1, asserts.text2);
+            testLoginPage.verifyLoginSucess(asserts.expectedUrl, driver.Url, asserts.text1, asserts.text2);
         }
 
         [Test]
@@ -126,18 +147,18 @@ namespace seleniumCs
             AccessHomePage();
             homePage.CLickPracticeMenu();
             practicePage.clickTestLogin();
-            _wait.Until(ExpectedConditions.ElementIsVisible(testLoginPage.pageTitle));
+            wait.Until(ExpectedConditions.ElementIsVisible(testLoginPage.pageTitle));
 
-            _driver.FindElement(testLoginPage.usernameField).Click();
-            _actions
+            driver.FindElement(testLoginPage.usernameField).Click();
+            actions
                  .KeyDown(Keys.Shift)
                  .SendKeys("s")
                  .KeyUp(Keys.Shift)
                  .SendKeys("tudent")
                  .Perform();
 
-            Console.WriteLine($">>>>>>>> Username Value: {_driver.FindElement(testLoginPage.usernameField).GetAttribute("value")}");
-            Assert.AreEqual(_driver.FindElement(testLoginPage.usernameField).GetAttribute("value"), "Student", "First Letter is UpperCase!");
+            Console.WriteLine($">>>>>>>> Username Value: {driver.FindElement(testLoginPage.usernameField).GetAttribute("value")}");
+            Assert.AreEqual(driver.FindElement(testLoginPage.usernameField).GetAttribute("value"), "Student", "First Letter is UpperCase!");
         }
 
 
@@ -151,20 +172,20 @@ namespace seleniumCs
         [Test]
         public void DropdownActions()
         {
-            _driver.Navigate().GoToUrl(URL.heroLookUp);
-            _wait.Until(ExpectedConditions.ElementIsVisible(homePage2.headerTxt));
+            driver.Navigate().GoToUrl(URL.heroLookUp);
+            wait.Until(ExpectedConditions.ElementIsVisible(homePage2.headerTxt));
             homePage2.ClickMenus("Dropdown");
-            Assert.That(_driver.PageSource, Does.Contain("Dropdown List"));
+            Assert.That(driver.PageSource, Does.Contain("Dropdown List"));
             dropdownPage.DropdownAction("Option 2");
         }
 
         [Test]
         public void CheckboxActions()
         {
-            _driver.Navigate().GoToUrl(URL.heroLookUp);
-            _wait.Until(ExpectedConditions.ElementIsVisible(homePage2.headerTxt));
+            driver.Navigate().GoToUrl(URL.heroLookUp);
+            wait.Until(ExpectedConditions.ElementIsVisible(homePage2.headerTxt));
             homePage2.ClickMenus("Checkboxes");
-            Assert.That(_driver.PageSource, Does.Contain("Checkboxes"));
+            Assert.That(driver.PageSource, Does.Contain("Checkboxes"));
 
             //Check All the Unthick CheckBoxes
             checkboxAction.ThickCheckboxes();
@@ -184,7 +205,7 @@ namespace seleniumCs
 
         //    IWebElement slider = driver.FindElement(By.XPath("//*[@class=\"sliderContainer\"]/input"));
         //    res = GetPixelsToMove(slider, amount, sliderMax, sliderMin);
-        //    _actions
+        //    actions
         //        .ClickAndHold(slider)
         //        .MoveByOffset(-slider.Size.Width / 2, 0)
         //        .MoveByOffset(res, 0)
@@ -265,7 +286,7 @@ namespace seleniumCs
         //    Assert.That(boxB.Text, Is.EqualTo("B"));
 
         //    //Drag box A and Drop to Box B
-        //    _actions
+        //    actions
         //        .ClickAndHold(boxA)
         //        .MoveToElement(boxB)
         //        .Release().Perform();

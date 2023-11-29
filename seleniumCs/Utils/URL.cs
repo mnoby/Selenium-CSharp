@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace seleniumCs.Resources;
+namespace seleniumCs.Utils;
 static class URL
 {
     public static string practiceAutomation => "https://practicetestautomation.com/";
