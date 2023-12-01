@@ -31,6 +31,7 @@ public class Inits
     protected TestLoginPage testLoginPage;
     protected DropdownPage dropdownPage;
     protected CheckboxAction checkboxAction;
+    protected AlertPage alertPage;
     Reporter reporter;
 
     [SetUp]
@@ -47,6 +48,7 @@ public class Inits
         testLoginPage = new TestLoginPage(driver, wait);
         dropdownPage = new DropdownPage(driver, wait);
         checkboxAction = new CheckboxAction(driver, wait);
+        alertPage = new AlertPage(driver, wait);
         reporter = new Reporter(driver, extent, test, uuid);
     }
 

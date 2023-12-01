@@ -21,6 +21,9 @@ namespace seleniumCs.Utils
             {
                 case BrowserType.Chrome:
                     new DriverManager().SetUpDriver(new ChromeConfig());
+                    //ChromeOptions options = new();
+                    //options.AddArgument("--headless");
+                    //return new ChromeDriver(options);
                     return new ChromeDriver();
 
                 case BrowserType.Firefox:

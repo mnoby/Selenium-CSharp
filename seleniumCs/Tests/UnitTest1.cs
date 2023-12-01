@@ -1,19 +1,17 @@
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
-using OpenQA.Selenium.Interactions;
-using Cookie = OpenQA.Selenium.Cookie;
-using AventStack.ExtentReports;
-using seleniumCs.Pages;
-using System.Text.Json.Serialization;
-using static System.Net.WebRequestMethods;
-using seleniumCs.Pages2;
 using seleniumCs.Utils;
-using System;
+//using excel = Microsoft.Office.Interop.Excel;
+//using Microsoft.Office.Core;
+using OpenQA.Selenium.Support.UI;
+using seleniumCs.TestDataAccess;
+using System.Configuration;
 
-namespace seleniumCs
+
+namespace seleniumCs.Tests
 {
     [TestFixture]
+    //[Parallelizable(ParallelScope.All)]
+
     public class UnitTest : Inits
     {
         //IWebDriver driver;
@@ -111,7 +109,9 @@ namespace seleniumCs
         [Test]
         public void AccessHomePage()
         {
-            
+            //var url = ConfigurationManager.AppSettings["URL"];
+            //Console.WriteLine(string.Format("URL '{0}'", url));
+            //driver.Navigate().GoToUrl(url);
             driver.Navigate().GoToUrl(URL.practiceAutomation);
             homePage.VerifyHomePage("Hello");
         }
@@ -195,6 +195,45 @@ namespace seleniumCs
             checkboxAction.UnthickCheckboxes();
         }
 
+        [Test]
+        [Category("Handling Alerts")]
+        public void HandlingAlerts()
+        {
+            driver.Navigate().GoToUrl(URL.heroLookUp);
+            wait.Until(ExpectedConditions.ElementIsVisible(homePage2.headerTxt));
+            homePage2.ClickMenus("JavaScript Alerts");
+            Assert.That(driver.PageSource, Does.Contain("JavaScript Alerts"));
+
+            alertPage.ClickJsAlert();
+            Thread.Sleep(2000);
+            alertPage.ClickJsConfirm();
+            Thread.Sleep(2000);
+            alertPage.ClickJsPrompt();
+        }
+
+
+
+        [Test]
+        public void DataDrivenExcel()
+        {
+            var userData = ExcelDataAccess.GetTestData("UnitTest1"); // Store userdatas which has key = UnitTest1
+            var asserts = new
+            {
+                expectedUrl = """https://practicetestautomation.com/logged-in-successfully/""",
+                text1 = "Congratulations",
+                text2 = "successfully logged in"
+            };
+            AccessHomePage();
+            homePage.CLickPracticeMenu();
+            practicePage.clickTestLogin();
+            wait.Until(ExpectedConditions.ElementIsVisible(testLoginPage.pageTitle));
+         
+            testLoginPage.Login(userData.username, userData.password);
+            testLoginPage.verifyLoginSucess(asserts.expectedUrl, driver.Url, asserts.text1, asserts.text2);
+            
+
+
+        }
         //[Test]
         //public void SliderActions()
         //{
