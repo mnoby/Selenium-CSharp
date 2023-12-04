@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 
-namespace seleniumCs.Utils
+namespace SeleniumProject.Utils
 {
     public class WebDriverFactory
     {

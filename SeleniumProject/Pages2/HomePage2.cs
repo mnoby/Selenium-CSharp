@@ -1,11 +1,11 @@
-﻿using seleniumCs.Utils;
+﻿using SeleniumProject.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace seleniumCs.Pages2
+namespace SeleniumProject.Pages2
 {
     public class HomePage2:Inits
     {

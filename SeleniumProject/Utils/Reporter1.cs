@@ -15,7 +15,7 @@
 //using System.Xml.Linq;
 //using System.Security.Cryptography;
 
-//namespace seleniumCs.Utils
+//namespace SeleniumProject.Utils
 //{
 //    [SetUpFixture]
 //    public class Reporter1

@@ -1,27 +1,18 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
-//using OpenQA.Selenium;
-using NUnit.Framework.Interfaces;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-using seleniumCs.Pages;
-using seleniumCs.Pages2;
-using System;
-using System.IO;
+using SeleniumProject.Pages;
+using SeleniumProject.Pages2;
 using OpenQA.Selenium.Interactions;
-using NUnit.Framework.Internal.Commands;
 
-namespace seleniumCs.Utils;
+namespace SeleniumProject.Utils;
 
 [SetUpFixture]
 public class Inits
 {
-    protected IWebDriver? driver;
-    protected WebDriverWait? wait;
-    protected ExtentReports? extent;
-    protected ExtentTest? test;
+    protected IWebDriver driver;
+    protected WebDriverWait wait;
+    protected ExtentReports extent;
+    protected ExtentTest test;
     protected Guid uuid;
     protected Actions actions;
 
@@ -58,7 +49,7 @@ public class Inits
         //reporter.ReportInit();
         uuid = Guid.NewGuid();
 
-        var path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
+        var path = Environment.CurrentDirectory;
         var actualPath = path[..path.LastIndexOf("bin")];
         var projectPath = new Uri(actualPath).LocalPath;
         Directory.CreateDirectory(projectPath.ToString() + "Reports");

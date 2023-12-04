@@ -1,4 +1,4 @@
-﻿namespace seleniumCs.Utils;
+﻿namespace SeleniumProject.Utils;
 
 public enum BrowserType
 {

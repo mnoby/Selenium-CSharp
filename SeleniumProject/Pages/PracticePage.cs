@@ -1,4 +1,4 @@
-﻿namespace seleniumCs.Pages
+﻿namespace SeleniumProject.Pages
 {
     public class PracticePage
     {

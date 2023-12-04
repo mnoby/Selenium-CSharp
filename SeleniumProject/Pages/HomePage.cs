@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium.Interactions;
 
-namespace seleniumCs;
+namespace SeleniumProject;
 public class HomePage
 {
     IWebDriver? _driver;

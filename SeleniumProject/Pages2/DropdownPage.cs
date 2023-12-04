@@ -1,6 +1,6 @@
-﻿using seleniumCs.Utils;
+﻿using SeleniumProject.Utils;
 
-namespace seleniumCs.Pages2
+namespace SeleniumProject.Pages2
 {
     public class DropdownPage : Inits
     {

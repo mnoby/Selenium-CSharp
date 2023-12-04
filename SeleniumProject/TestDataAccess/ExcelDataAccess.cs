@@ -2,7 +2,7 @@
 using System.Data.OleDb;
 using Dapper;
 
-namespace seleniumCs.TestDataAccess
+namespace SeleniumProject.TestDataAccess
 {
     class ExcelDataAccess
     {

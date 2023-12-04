@@ -1,13 +1,13 @@
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
-using seleniumCs.Utils;
+using SeleniumProject.Utils;
 //using excel = Microsoft.Office.Interop.Excel;
 //using Microsoft.Office.Core;
 using OpenQA.Selenium.Support.UI;
-using seleniumCs.TestDataAccess;
+using SeleniumProject.TestDataAccess;
 using System.Configuration;
 
 
-namespace seleniumCs.Tests
+namespace SeleniumProject.Tests
 {
     [TestFixture]
     //[Parallelizable(ParallelScope.All)]
@@ -113,7 +113,7 @@ namespace seleniumCs.Tests
             //Console.WriteLine(string.Format("URL '{0}'", url));
             //driver.Navigate().GoToUrl(url);
             driver.Navigate().GoToUrl(URL.practiceAutomation);
-            homePage.VerifyHomePage("Hello");
+            homePage.VerifyHomePage("Hellos");
         }
 
         [Test]

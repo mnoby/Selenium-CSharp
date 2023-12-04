@@ -1,4 +1,4 @@
-﻿namespace seleniumCs.TestDataAccess
+﻿namespace SeleniumProject.TestDataAccess
 {
     public class UserData
     {

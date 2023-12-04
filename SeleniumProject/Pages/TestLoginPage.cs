@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace seleniumCs.Pages
+﻿namespace SeleniumProject.Pages
 {
     public class TestLoginPage
     {

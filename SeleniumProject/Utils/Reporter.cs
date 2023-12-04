@@ -1,21 +1,8 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
-using NUnit.Framework;
 using NUnit.Framework.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System.IO;
-using AventStack.ExtentReports.Model;
-using System.Net.NetworkInformation;
-using System.Xml.Linq;
-using System.Security.Cryptography;
 
-namespace seleniumCs.Utils
+namespace SeleniumProject.Utils
 {
     public class Reporter
     {
@@ -104,13 +91,13 @@ namespace seleniumCs.Utils
         {
             ITakesScreenshot ts = (ITakesScreenshot)driver;
             Screenshot screenshot = ts.GetScreenshot();
-            var pth = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
+            var pth = Environment.CurrentDirectory;
             var actualPath = pth[..pth.LastIndexOf("bin")];
             var reportPath = new Uri(actualPath).LocalPath;
             Directory.CreateDirectory(reportPath + "Reports\\" + "Screenshots");
             var finalpth = pth[..pth.LastIndexOf("bin")] + "Reports\\Screenshots\\" + screenShotName;
             var localpath = new Uri(finalpth).LocalPath;
-            screenshot.SaveAsFile(localpath, ScreenshotImageFormat.Png);
+            screenshot.SaveAsFile(localpath);
             return localpath;
         }
 
