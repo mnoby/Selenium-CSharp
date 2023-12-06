@@ -12,17 +12,25 @@ using System.Threading;
 using System.Drawing;
 using OpenQA.Selenium.Firefox;
 
-namespace SeleniumProject.Tests
+namespace SeleniumProject.TestSeleniumGrid
 {
-    [TestFixture("chrome", "119", "Windows 11")]
-    [TestFixture("chrome ", "118", "Windows 11")]
-    [TestFixture("chrome ", "117", "Windows 11")]
-    [TestFixture("chrome ", "116", "Windows 11")]
-    [TestFixture("chrome ", "115", "Windows 11")]
-    [TestFixture("chrome ", "114", "Windows 11")]
-    [TestFixture("chrome ", "113", "Windows 11")]
-    [TestFixture("firefox ", "112", "Windows 11")]
-    [TestFixture("chrome ", "111", "Windows 11")]
+    //[TestFixture("chrome", "119", "Windows 11")]
+    //[TestFixture("chrome", "118", "Windows 11")]
+    //[TestFixture("chrome", "117", "Windows 11")]
+    //[TestFixture("chrome", "116", "Windows 11")]
+    //[TestFixture("chrome", "115", "Windows 11")]
+    //[TestFixture("chrome", "114", "Windows 11")]
+    //[TestFixture("chrome", "113", "Windows 11")]
+    //[TestFixture("chrome", "112", "Windows 11")]
+    //[TestFixture("chrome", "111", "Windows 11")]
+    [TestFixture("firefox", "118", "Windows 11")]
+    [TestFixture("firefox", "117", "Windows 11")]
+    [TestFixture("firefox", "116", "Windows 11")]
+    [TestFixture("firefox", "115", "Windows 11")]
+    [TestFixture("firefox", "114", "Windows 11")]
+    //[TestFixture("firefox", "113", "Windows 11")]
+    //[TestFixture("firefox", "112", "Windows 11")]
+    //[TestFixture("firefox", "111", "Windows 11")]
     [Parallelizable(ParallelScope.Fixtures)]
     //[TestFixture]
     public class SeleniumGrid
@@ -31,9 +39,9 @@ namespace SeleniumProject.Tests
         public static string uri = "http://localhost:4444";
 
         //ThreadLocal<IWebDriver> driver = new();
-        private String browser;
-        private String version;
-        private String os;
+        private string browser;
+        private string version;
+        private string os;
 
         public SeleniumGrid(string browser, string version, string os)
         {
@@ -45,7 +53,7 @@ namespace SeleniumProject.Tests
         [SetUp]
         public void Init()
         {
-            //Console.WriteLine($"cersion >>>>>>> {version}");
+            Console.WriteLine($"cersion >>>>>>> {version}");
             if (browser == "chrome")
             {
                 ChromeOptions chromeOptions = new()
@@ -56,12 +64,15 @@ namespace SeleniumProject.Tests
                 };
 
                 driver = new RemoteWebDriver(new Uri("http://localhost:4444"), chromeOptions.ToCapabilities(), TimeSpan.FromSeconds(60));
-
-            } else if (browser == "firefox")
+                driver.Manage().Window.Maximize();
+            }
+            else if (browser == "firefox")
             {
                 FirefoxOptions firefoxOptions = new()
                 {
+                    //BrowserVersion = version,
                     PlatformName = os
+
                 };
                 driver = new RemoteWebDriver(new Uri("http://localhost:4444"), firefoxOptions.ToCapabilities(), TimeSpan.FromSeconds(60));
 

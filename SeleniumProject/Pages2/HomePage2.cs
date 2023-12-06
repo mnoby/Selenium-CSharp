@@ -13,7 +13,7 @@ namespace SeleniumProject.Pages2
         //readonly By dropdownBtn = By.XPath("//a[contains(text(),'Dropdown')]");
         public readonly By headerTxt = By.XPath("""//h1[@class="heading"]""");
 
-        public HomePage2(IWebDriver driver, WebDriverWait wait)
+        public HomePage2(IWebDriver driver, WebDriverWait wait, string browser, string version, string platform) : base(browser, version, platform)
         {
             this.driver = driver;
             this.wait = wait;  

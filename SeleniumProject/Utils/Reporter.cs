@@ -22,14 +22,15 @@ namespace SeleniumProject.Utils
         }
 
         //not used for now
-        public void ReportInit()
+        public void ReportInit(string browser, string platform)
         {
             var path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
+            var className = TestContext.CurrentContext.Test.ClassName;
             //var path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
             var actualPath = path[..path.LastIndexOf("bin")];
             var projectPath = new Uri(actualPath).LocalPath;
             Directory.CreateDirectory(projectPath.ToString() + "Reports");
-            var fileName = this.GetType().ToString() + $"-{_uuid.ToString()[..4]}" + ".html";
+            var fileName = className + browser + $"-{_uuid.ToString()[..4]}" + ".html";
             var reportPath = projectPath + @"Reports\";
             var htmlReporter = new ExtentSparkReporter(reportPath + fileName);
             _extent = new ExtentReports();
@@ -37,6 +38,8 @@ namespace SeleniumProject.Utils
             _extent.AddSystemInfo("Host Name", "LocalHost");
             _extent.AddSystemInfo("Environment", "QA");
             _extent.AddSystemInfo("UserName", "TestUser");
+            _extent.AddSystemInfo("Platform", browser);
+            _extent.AddSystemInfo("Platform", platform);
         }
 
         public void FlushReporter()
@@ -54,16 +57,18 @@ namespace SeleniumProject.Utils
 
         public void GenerateReport()
         {
+            var methodName = TestContext.CurrentContext.Test.MethodName;
             var status = TestContext.CurrentContext.Result.Outcome.Status;
             var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace) ? ""
 : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
             Status logstatus;
+
             switch (status)
             {
                 case TestStatus.Failed:
                     logstatus = Status.Fail;
                     DateTime time = DateTime.Now;
-                    string fileName = "Screenshot_" + time.ToString("h_mm_ss") + ".png";
+                    string fileName = $"Screenshot_{methodName}_" + time.ToString("h_mm_ss") + ".png";
                     string screenShotPath = Capture(_driver, fileName);
                     _test.Log(Status.Fail, "Fail");
                     _test.Log(Status.Fail, "Snapshot below: " + _test.AddScreenCaptureFromPath(screenShotPath));
@@ -79,8 +84,7 @@ namespace SeleniumProject.Utils
                     break;
             }
             _test.Log(logstatus, "Test ended with: " + logstatus + "<br> Stacktrace: " + stacktrace);
-            _extent.Flush();
-            //_driver.Quit();
+            //_extent.Flush();
         }
         public IWebDriver GetDriver()
         {
@@ -91,16 +95,19 @@ namespace SeleniumProject.Utils
         {
             ITakesScreenshot ts = (ITakesScreenshot)driver;
             Screenshot screenshot = ts.GetScreenshot();
+
             var pth = Environment.CurrentDirectory;
             var actualPath = pth[..pth.LastIndexOf("bin")];
             var reportPath = new Uri(actualPath).LocalPath;
+
             Directory.CreateDirectory(reportPath + "Reports\\" + "Screenshots");
             var finalpth = pth[..pth.LastIndexOf("bin")] + "Reports\\Screenshots\\" + screenShotName;
             var localpath = new Uri(finalpth).LocalPath;
+
             screenshot.SaveAsFile(localpath);
             return localpath;
         }
 
     }
-    
+
 }

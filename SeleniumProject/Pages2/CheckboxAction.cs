@@ -8,7 +8,7 @@ namespace SeleniumProject.Pages2
         int _index;
         readonly By checkboxEl = By.XPath("//input[@type=\"checkbox\"]");
 
-        public CheckboxAction(IWebDriver driver, WebDriverWait wait)
+        public CheckboxAction(IWebDriver driver, WebDriverWait wait, string browser, string version, string platform) : base(browser, version, platform)
         {
             this.driver = driver;
             this.wait = wait;

@@ -7,7 +7,8 @@ namespace SeleniumProject.Pages2
 
         readonly By dropdown = By.Id("dropdown");
 
-        public DropdownPage(IWebDriver driver, WebDriverWait wait) {
+        public DropdownPage(IWebDriver driver, WebDriverWait wait, string browser, string version, string platform) : base(browser, version, platform)
+        {
             this.driver = driver;
             this.wait = wait;
         }

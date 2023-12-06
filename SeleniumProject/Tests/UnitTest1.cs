@@ -1,110 +1,22 @@
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 using SeleniumProject.Utils;
-//using excel = Microsoft.Office.Interop.Excel;
-//using Microsoft.Office.Core;
-using OpenQA.Selenium.Support.UI;
 using SeleniumProject.TestDataAccess;
-using System.Configuration;
-
 
 namespace SeleniumProject.Tests
 {
-    [TestFixture]
-    //[Parallelizable(ParallelScope.All)]
+
+    [TestFixture("chrome", "119", "Windows 11")]
+    [TestFixture("chrome", "118", "Windows 11")]
+    [TestFixture("firefox", "117", "Windows 11")]
+    //[TestFixture("chrome", "116", "Windows 11")]
+    //[TestFixture("chrome", "115", "Windows 11")]
+    
+    [Parallelizable(ParallelScope.Fixtures)]
 
     public class UnitTest : Inits
     {
-        //IWebDriver driver;
-        //WebDriverWait wait;
-        //Actions actions;
-        //Inits inits;
-        //ExtentReports _extent;
-        //ExtentTest _test;
-        //Guid _uuid;
-
-        //HomePage homePage;
-        //PracticePage practicePage;
-        //TestLoginPage testLoginPage;
-        //HomePage2 homePage2;
-        //DropdownPage dropdownPage;
-        //CheckboxAction checkboxAction;
-        //HomePage homePage = new(driver, wait, actions);
-        //homePage2 = new HomePage2(driver, wait);
-        //PracticePage practicePage = new PracticePage(driver, wait);
-        //TestLoginPage testLoginPage = new TestLoginPage(driver, wait);
-        //DropdownPage dropdownPage = new DropdownPage(driver, wait);
-        //CheckboxAction checkboxAction = new CheckboxAction(driver, wait);
-        //Reporter reporter;
-        //Reporter1 reporter1;
-
-        //private static int GetPixelsToMove(IWebElement Slider, decimal Amount, decimal SliderMax, decimal SliderMin)
-        //{
-        //    int pixels;
-        //    decimal tempPixels = Slider.Size.Width;
-        //    tempPixels /= (SliderMax - SliderMin);
-        //    tempPixels *= (Amount - SliderMin);
-        //    pixels = (int)tempPixels;
-        //    return pixels;
-        //}
-
-        //[SetUp]
-        //public void Setup()
-        //{
-
-        //    //Below code is to get the drivers folder path dynamically.
-
-        //    //You can also specify chromedriver.exe path dircly ex: C:/MyProject/Project/drivers
-
-        //    // string path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-
-        //    //Creates the ChomeDriver object, Executes tests on Google Chrome
-        //    //driver = new WebDriverFactory().Create(BrowserType.Chrome);
-        //    //driver.Manage().Window.Maximize();
-        //    //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-
-        //    //driver = new Reporter1().GetDriver();
-        //    ////driver = new ChromeDriver();
-        //    //wait = new(driver, TimeSpan.FromSeconds(10));
-        //    //actions = new(driver);
-        //    //_uuid = Guid.NewGuid();
-
-        //homePage = new HomePage(driver, wait, actions);
-        //    //homePage2 = new HomePage2(driver, wait);
-        //    //practicePage = new PracticePage(driver, wait);
-        //    //testLoginPage = new TestLoginPage(driver, wait);
-        //    //dropdownPage = new DropdownPage(driver, wait);
-        //    //checkboxAction = new CheckboxAction(driver, wait);
-        //    //reporter = new Reporter(_extent, _test);
-        //    //reporter1 = new Reporter1(GetDriver());
-
-        //    //_test = _extent.CreateTest(TestContext.CurrentContext.Test.Name);
-        //    //reporter.StartReporter(_uuid.ToString()[..4]);
-        //    //url = new URL(); 
-        //    // rivate IWebElement practiceBtn => driver.FindElement(By.XPath("//a[contains(text(),'Practice')]"));
-
-
-        //    //If you want to Execute Tests on Firefox uncomment the below code
-
-        //    // Specify Correct location of geckodriver.exe folder path. Ex: C:/Project/drivers
-
-        //    //driver= new FirefoxDriver(path + @"\drivers\");
-
-        //}
-
-        //[TearDown]
-        ////[Description("Generate Report")]
-        //public void AfterTest()
-        //{
-        //    //reporter.GenerateReport();
-        //    driver.Quit();
-        //}
-
-        //[OneTimeTearDown]
-        ////[TearDown]
-        //public void Flush()
-        //{
-        //    _extent.Flush();
-        //}
+        public UnitTest(string browser, string version, string platform) : base(browser, version, platform)
+        { }
 
         [Test]
         public void AccessHomePage()
@@ -112,8 +24,9 @@ namespace SeleniumProject.Tests
             //var url = ConfigurationManager.AppSettings["URL"];
             //Console.WriteLine(string.Format("URL '{0}'", url));
             //driver.Navigate().GoToUrl(url);
+
             driver.Navigate().GoToUrl(URL.practiceAutomation);
-            homePage.VerifyHomePage("Hellos");
+            homePage.VerifyHomePage("Hello");
         }
 
         [Test]
@@ -227,13 +140,14 @@ namespace SeleniumProject.Tests
             homePage.CLickPracticeMenu();
             practicePage.clickTestLogin();
             wait.Until(ExpectedConditions.ElementIsVisible(testLoginPage.pageTitle));
-         
+
             testLoginPage.Login(userData.username, userData.password);
             testLoginPage.verifyLoginSucess(asserts.expectedUrl, driver.Url, asserts.text1, asserts.text2);
-            
+
 
 
         }
+        /* script below still have not implemented POM yet
         //[Test]
         //public void SliderActions()
         //{
@@ -387,6 +301,7 @@ namespace SeleniumProject.Tests
         //    fWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
         //    fWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//a[contains(text(),'Drag and Dropp')]")));
         //}
+        */
     }
 
 
