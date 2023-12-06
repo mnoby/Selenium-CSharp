@@ -55,8 +55,7 @@ namespace SeleniumProject.Pages2
             _driver.SwitchTo().Alert().SendKeys("Test");
             _driver.SwitchTo().Alert().Accept();
 
-
-            Assert.AreEqual(_driver.FindElement(resultLable).Text, "You entered: Test");
+            Assert.That(_driver.FindElement(resultLable).Text, Is.EqualTo("You entered: Test"));
         }
     }
 }

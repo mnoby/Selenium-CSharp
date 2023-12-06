@@ -24,14 +24,14 @@ namespace SeleniumProject.TestSeleniumGrid
     //[TestFixture("chrome", "112", "Windows 11")]
     //[TestFixture("chrome", "111", "Windows 11")]
     [TestFixture("firefox", "118", "Windows 11")]
-    [TestFixture("firefox", "117", "Windows 11")]
-    [TestFixture("firefox", "116", "Windows 11")]
-    [TestFixture("firefox", "115", "Windows 11")]
-    [TestFixture("firefox", "114", "Windows 11")]
+    //[TestFixture("firefox", "117", "Windows 11")]
+    //[TestFixture("firefox", "116", "Windows 11")]
+    //[TestFixture("firefox", "115", "Windows 11")]
+    //[TestFixture("firefox", "114", "Windows 11")]
     //[TestFixture("firefox", "113", "Windows 11")]
     //[TestFixture("firefox", "112", "Windows 11")]
     //[TestFixture("firefox", "111", "Windows 11")]
-    [Parallelizable(ParallelScope.Fixtures)]
+    //[Parallelizable(ParallelScope.Fixtures)] //UnComment this line to enable the parallel run
     //[TestFixture]
     public class SeleniumGrid
     {
@@ -51,6 +51,7 @@ namespace SeleniumProject.TestSeleniumGrid
         }
 
         [SetUp]
+        [Ignore("Just For Trying the Code")]
         public void Init()
         {
             Console.WriteLine($"cersion >>>>>>> {version}");
@@ -81,6 +82,7 @@ namespace SeleniumProject.TestSeleniumGrid
         }
 
         [Test]
+        [Ignore("Just For Trying the Code")]
         public void Todotest()
         {
 
@@ -109,6 +111,8 @@ namespace SeleniumProject.TestSeleniumGrid
         }
 
         [TearDown]
+        [Ignore("Just For Trying the Code")]
+
         public void Cleanup()
         {
             // Terminates the remote webdriver session
