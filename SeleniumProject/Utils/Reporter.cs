@@ -55,7 +55,7 @@ namespace SeleniumProject.Utils
             _test = _extent.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 
-        public void GenerateReport()
+        public void GenerateReport(string browser)
         {
             var methodName = TestContext.CurrentContext.Test.MethodName;
             var status = TestContext.CurrentContext.Result.Outcome.Status;
@@ -68,7 +68,7 @@ namespace SeleniumProject.Utils
                 case TestStatus.Failed:
                     logstatus = Status.Fail;
                     DateTime time = DateTime.Now;
-                    string fileName = $"Screenshot_{methodName}_" + time.ToString("h_mm_ss") + ".png";
+                    string fileName = $"Screenshot_{methodName}_{browser}" + ".png";
                     string screenShotPath = Capture(_driver, fileName);
                     _test.Log(Status.Fail, "Fail");
                     _test.Log(Status.Fail, "Snapshot below: " + _test.AddScreenCaptureFromPath(screenShotPath));

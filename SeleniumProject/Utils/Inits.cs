@@ -71,8 +71,8 @@ public class Inits
         var actualPath = path[..path.LastIndexOf("bin")];
         var projectPath = new Uri(actualPath).LocalPath;
         Directory.CreateDirectory(projectPath.ToString() + "Reports");
-        var className = TestContext.CurrentContext.Test.ClassName;
-        var fileName = className + Browser + $"-{uuid.ToString()[..4]}" + ".html";
+        var className = this.GetType().Name;
+        var fileName = className + $"_{Browser}" + $"-{uuid.ToString()[..4]}" + ".html";
         //var fileName = this.GetType().ToString() + $"-{uuid.ToString()[..4]}" + ".html";
         var reportPath = projectPath + @"Reports\";
         var htmlReporter = new ExtentSparkReporter(reportPath + fileName);
@@ -95,7 +95,7 @@ public class Inits
     [TearDown]
     public void TearDown()
     {
-        reporter.GenerateReport();
+        reporter.GenerateReport(Browser);
         driver.Quit();
     }
     private void BrowserInit()
