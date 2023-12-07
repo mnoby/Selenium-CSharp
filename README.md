@@ -13,7 +13,7 @@ The Repository is creating automation testing using [Selenium](https://www.selen
 ##  Pre-Requisites
 1.  Have Installed [Visual Studio IDE 2022](https://visualstudio.microsoft.com/downloads/)
 2.  Have Installed [NUNit Selenium C#](https://www.lambdatest.com/blog/nunit-testing-tutorial-for-selenium-csharp/) 4.0 or latest 
-3.  Have Installed [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+3.  Have Installed [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Recommended to install the docker in the WSL Ubuntu due to the security)
 4.  Have Installed [WSL Ubuntu](https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support)
 5.  Have Downloaded [Jenkins](https://www.jenkins.io/download/) 
 

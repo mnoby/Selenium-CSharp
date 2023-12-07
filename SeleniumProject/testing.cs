@@ -18,7 +18,7 @@ namespace SeleniumProject
             string url = ConfigurationManager.AppSettings["ApartmentState"];
             Console.WriteLine(string.Format("URL '{0}'", url));
 
-            //string startupPath = System.IO.Directory.GetCurrentDirectory();s
+            //string startupPath = System.IO.Directory.GetCurrentDirectory();
             var baseDir = Environment.CurrentDirectory;
             Console.WriteLine($"TYPE OF >>>>{baseDir.GetType()} ");
             string a = TestContext.CurrentContext.Test.ClassName;
