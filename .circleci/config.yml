@@ -17,6 +17,9 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
+       - run:
+          name: "Say hello"
+          command: "echo pwd"
       # Then simply use the dotnet container as you'd expect and run your tests
       - run:
           # Update this line with the directory that contains your tests project file
