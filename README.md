@@ -8,7 +8,8 @@ The Repository is creating automation testing using [Selenium](https://www.selen
 ##  Contents
 * [Pre-Requisites](#pre-requisites)
 * [How to Dockerize Selenium C#](#how-to-dockerize-selenium-c#)
-* [How to Integrate Dockerize Selenium Grid C# with Jenkins](#how-to-integrate-dockerize-selenium-grid-c#-with-jenkins)
+* [How to Integrate Dockerize Selenium Grid C# with Local Jenkins](#how-to-integrate-dockerize-selenium-grid-c#-with-local-jenkins)
+* [How to Run Tests Using Docker in Local](#how-to-run-tests-using-docker-in-local)
 
 ##  Pre-Requisites
 1.  Have Installed [Visual Studio IDE 2022](https://visualstudio.microsoft.com/downloads/)
@@ -73,7 +74,7 @@ services:
 3.  Visit selenium grid [Dashboard](http://localhost:4444/). The Nodes should be appear too.
 4.  Run The Tests from Visual Studio 2022 
 
-##  How to Integrate Dockerize Selenium Grid C# with Jenkins
+##  How to Integrate Dockerize Selenium Grid C# with Local Jenkins
 1. Open `Command Prompt` and move the directory to jenkins insttallation((by default) `C:\Program Files\Jenkins` ). Then execute this command:
 ```bash
 java -jar Jenkins.war
@@ -90,3 +91,17 @@ hudson.lifecycle.Lifecycle#onReady: Jenkins is fully up and running
 On this Section we are trying to trigger to run build when the changes has been pushed to the specific mentioned branch on `Github`.
 1. Set up your Github Webhook integration by following this [Tutorial](https://www.youtube.com/watch?v=bE_vbKI3FrU)
 2. Create and push the changes to the `Github` and the Build should be triggered.
+
+##  How to Run Tests Using Docker in Local
+1. Define the specific broeser as a container
+2. Define its environment, such as `max_session`, `stereotype`, etc.
+3. Define the `selenium-hub` container
+4. define the `Dockerfile`
+5. Run the tests by executing the following command
+```bash
+docker-compose up --build
+```
+6. Execute the following command to run the test manually or intend to rerun the test
+```bash
+docker run --rm -it <container_name> /bin/bash
+```

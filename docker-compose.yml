@@ -13,6 +13,8 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_NODE_MAX_SESSIONS=5
       - SE_NODE_STEREOTYPE={"browserName":"chrome","platformName":"Windows 11"}
+    networks:
+      - my_network
   # edge:
   #   image: selenium/node-edge:4.15.0-20231129
   #   shm_size: 2gb
@@ -34,11 +36,30 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_NODE_MAX_SESSIONS=5
       - SE_NODE_STEREOTYPE={"browserName":"firefox","platformName":"Windows 11"}
+      - HUB_HOST=selenium-hub
+    networks:
+      - my_network
 
   selenium-hub:
     image: selenium/hub:4.15.0-20231129
     container_name: selenium-hub
+    # hostname: localhost
     ports:
       - "4442:4442"
       - "4443:4443"
       - "4444:4444"
+    networks:
+      - my_network 
+
+  dotnet:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dotnet-container
+    depends_on: 
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+    networks:
+      - my_network
+

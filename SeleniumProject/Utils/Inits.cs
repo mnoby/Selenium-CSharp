@@ -22,7 +22,6 @@ public class Inits
     protected string Version { get; }
     protected string Platform { get; }
 
-
     protected HomePage homePage;
     protected HomePage2 homePage2;
     protected PracticePage practicePage;
@@ -31,7 +30,6 @@ public class Inits
     protected CheckboxAction checkboxAction;
     protected AlertPage alertPage;
     Reporter reporter;
-
 
     public Inits(string browser, string version, string platform)
     {
@@ -95,7 +93,7 @@ public class Inits
     [TearDown]
     public void TearDown()
     {
-        reporter.GenerateReport(Browser);
+        reporter.GenerateReport($"{Browser}-{uuid.ToString()[..4]}");
         driver.Quit();
     }
     private void BrowserInit()
@@ -107,7 +105,7 @@ public class Inits
 
     private void RemoteDriverInit()
     {
-
+  
         if (Browser == "chrome")
         {
             ChromeOptions chromeOptions = new()
