@@ -12,9 +12,9 @@ jobs:
     # Be sure to update the tag on this image to a more stable version, using latest can result in unstable builds.
     docker:
       - image: mcr.microsoft.com/dotnet/sdk:latest
-      - image: selenium/hub:4.15.0-20231129
-      - image: selenium/node-firefox:4.15.0-20231129
-      - image: selenium/node-chrome:4.15.0-20231129
+      # - image: selenium/hub:4.15.0-20231129
+      # - image: selenium/node-firefox:4.15.0-20231129
+      # - image: selenium/node-chrome:4.15.0-20231129
 
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
